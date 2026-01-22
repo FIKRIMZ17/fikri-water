@@ -6,17 +6,18 @@ import '../styles/global.css';
 const tokoName = "Fikri Water";
 const noWA = "6285880209240"; 
 const alamat = "Kp. Mekar Jaya, Ds. Kalong Jalan";
+const jamBuka = "07.00 - 17.00 WIB";
 
-// 3. DATA HADIAH KUPON (Bisa kamu edit)
+// 3. DATA HADIAH KUPON
 const prizes = [
   { kupon: 10, hadiah: "Gratis 1x Isi Ulang" },
   { kupon: 20, hadiah: "Gelas Polos / Sarung Galon" },
   { kupon: 40, hadiah: "Minyak Goreng 1 Liter" },
-  { kupon: 60, hadiah: "Handuk Karakter/ Payung" },
-  { kupon: 120, hadiah: "Kipas Angin 10inch/ Karpet Bulak Balik" },
-  { kupon: 140, hadiah: "Termos Air 2 Liter/ Panci Listrik 1,8 Liter" },
-  { kupon: 500, hadiah: "Rice Cooker Miyako/ Kipas Angin Sanex" },
-  { kupon: 800, hadiah: "Lemari TV 42 Inch/ Kompor Rinnai 2 Tungku" },
+  { kupon: 60, hadiah: "Handuk Karakter / Payung" },
+  { kupon: 120, hadiah: "Kipas Angin 10inch / Karpet" },
+  { kupon: 140, hadiah: "Termos Air / Panci Listrik" },
+  { kupon: 500, hadiah: "Rice Cooker / Kipas Sanex" },
+  { kupon: 800, hadiah: "Lemari TV / Kompor Rinnai" },
 ];
 
 // 4. DATA PRODUK
@@ -75,7 +76,7 @@ const products = [
     originalPrice: "Rp 19.000", 
     bonus: null,
     img: "gelas.png" 
-	},
+  },
 ];
 ---
 
@@ -83,7 +84,7 @@ const products = [
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>{tokoName} - Banjir Hadiah!</title>
+    <title>{tokoName} - Buka Setiap Hari!</title>
   </head>
   <body class="bg-slate-50 font-sans text-slate-800">
     
@@ -106,8 +107,19 @@ const products = [
       <p class="text-gray-600 mb-4 max-w-lg mx-auto text-lg">
         Solusi Hemat Ibu Pintar. Air bersih, pelayanan cepat, dan <b>banyak bonusnya!</b>
       </p>
-      <div class="inline-block bg-white text-blue-800 px-4 py-1 rounded-full border border-blue-200 text-sm font-semibold shadow-sm">
-        📍 {alamat}
+
+      <div class="flex flex-wrap justify-center gap-2 mb-6 text-sm font-semibold">
+        <span class="bg-white text-gray-700 px-3 py-1 rounded-full border shadow-sm flex items-center gap-1">
+          📍 {alamat}
+        </span>
+        
+        <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full border border-orange-200 flex items-center gap-1 shadow-sm">
+          🕰️ {jamBuka}
+        </span>
+        
+        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full border border-green-200 flex items-center gap-1 shadow-sm">
+          ✅ Buka Setiap Hari (Tanpa Libur)
+        </span>
       </div>
     </header>
 
@@ -186,7 +198,8 @@ const products = [
     <footer class="bg-slate-900 text-slate-400 py-12 text-center text-sm mt-12">
       <div class="container mx-auto px-4">
         <h4 class="font-black text-white text-2xl mb-2">💧 {tokoName}</h4>
-        <p class="mb-6 max-w-md mx-auto">{alamat}</p>
+        <p class="mb-2 max-w-md mx-auto">{alamat}</p>
+        <p class="mb-6 font-bold text-yellow-500">Buka Setiap Hari: {jamBuka}</p>
         
         <div class="p-4 bg-slate-800 rounded-lg max-w-sm mx-auto mb-8 border border-slate-700">
           <p class="text-slate-300 font-bold mb-2">Butuh Cepat? Hubungi Kami:</p>
