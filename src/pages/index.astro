@@ -1,11 +1,210 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+// 1. IMPORT DESAIN
+import '../styles/global.css';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// 2. DATA TOKO
+const tokoName = "Fikri Water";
+const noWA = "6285880209240"; 
+const alamat = "Kp. Mekar Jaya, Ds. Kalong Jalan";
+
+// 3. DATA HADIAH KUPON (Bisa kamu edit)
+const prizes = [
+  { kupon: 10, hadiah: "Gratis 1x Isi Ulang" },
+  { kupon: 20, hadiah: "Gelas Polos / Sarung Galon" },
+  { kupon: 40, hadiah: "Minyak Goreng 1 Liter" },
+  { kupon: 60, hadiah: "Handuk Karakter/ Payung" },
+  { kupon: 120, hadiah: "Kipas Angin 10inch/ Karpet Bulak Balik" },
+  { kupon: 140, hadiah: "Termos Air 2 Liter/ Panci Listrik 1,8 Liter" },
+  { kupon: 500, hadiah: "Rice Cooker Miyako/ Kipas Angin Sanex" },
+  { kupon: 800, hadiah: "Lemari TV 42 Inch/ Kompor Rinnai 2 Tungku" },
+];
+
+// 4. DATA PRODUK
+const products = [
+  { 
+    id: 1, 
+    name: "Isi Ulang Aqua (19L)", 
+    price: "Rp 5.000", 
+    originalPrice: "Rp 6.000", 
+    bonus: "+1 Kupon",
+    img: "/galon19liter.png" 
+  },
+  { 
+    id: 2, 
+    name: "Isi Ulang Le Minerale (15L)", 
+    price: "Rp 4.000", 
+    originalPrice: "Rp 5.000", 
+    bonus: "+1 Kupon",
+    img: "/galon15liter.png" 
+  },
+  { 
+    id: 3, 
+    name: "Aqua Galon Asli", 
+    price: "Rp 22.000", 
+    originalPrice:"Rp 23.000", 
+    bonus: "+1 kupon",
+    img: "aqua19liter.jpg" 
+  },
+  { 
+    id: 4, 
+    name: "Le Minerale Galon Asli", 
+    price: "Rp 21.000", 
+    originalPrice: "Rp 22.000", 
+    bonus: "+1 kupon",
+    img: "lemin15.jpg" 
+  },
+  { 
+    id: 5, 
+    name: "Gas Elpiji 3kg", 
+    price: "Rp 23.000", 
+    originalPrice: "Rp 25.000", 
+    bonus: null,
+    img: "gaselpiji3kg.jpg" 
+  },
+  { 
+    id: 6, 
+    name: "Es Batu Kiloan", 
+    price: "Rp 1.500", 
+    originalPrice: "Rp 2.000", 
+    bonus: null,
+    img: "esbatu.jpg" 
+  },
+  { id: 7, 
+    name: "Air Mineral Gelas", 
+    price: "Rp 18.000", 
+    originalPrice: "Rp 19.000", 
+    bonus: null,
+    img: "gelas.png" 
+	},
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{tokoName} - Banjir Hadiah!</title>
+  </head>
+  <body class="bg-slate-50 font-sans text-slate-800">
+    
+    <nav class="bg-blue-700 text-white shadow-lg sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex flex-col">
+          <h1 class="font-extrabold text-xl md:text-2xl tracking-tight flex items-center gap-2">
+            💧 {tokoName}
+          </h1>
+          <span class="text-[10px] text-blue-200 uppercase tracking-widest font-semibold">Depot Air & Gas Terpercaya</span>
+        </div>
+        <a href={`https://wa.me/${noWA}`} class="bg-green-500 hover:bg-green-600 text-white text-xs md:text-sm font-bold py-2 px-4 rounded-full transition shadow-md flex items-center gap-1 border-2 border-green-400">
+          <span>Pesan via WA</span>
+        </a>
+      </div>
+    </nav>
+
+    <header class="text-center py-10 px-4 bg-gradient-to-b from-blue-100 to-white">
+      <h2 class="text-4xl font-black text-blue-900 mb-2 drop-shadow-sm">{tokoName}</h2>
+      <p class="text-gray-600 mb-4 max-w-lg mx-auto text-lg">
+        Solusi Hemat Ibu Pintar. Air bersih, pelayanan cepat, dan <b>banyak bonusnya!</b>
+      </p>
+      <div class="inline-block bg-white text-blue-800 px-4 py-1 rounded-full border border-blue-200 text-sm font-semibold shadow-sm">
+        📍 {alamat}
+      </div>
+    </header>
+
+    <section class="bg-yellow-100 border-y-4 border-yellow-400 py-8 mb-8 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-20 h-20 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+      <div class="absolute top-0 right-0 w-20 h-20 bg-yellow-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+
+      <div class="container mx-auto px-4 text-center relative z-10">
+        <h3 class="text-3xl font-black text-yellow-800 mb-2">🎁 KUMPULKAN KUPONNYA!</h3>
+        <p class="text-gray-800 font-medium text-lg mb-4">
+          Setiap isi ulang 1 Galon = Dpt <span class="bg-red-600 text-white px-2 py-1 rounded font-bold shadow-md">1 KUPON HADIAH</span>
+        </p>
+        
+        <div class="bg-white rounded-xl p-4 max-w-2xl mx-auto shadow-lg border border-yellow-200">
+          <h4 class="font-bold text-gray-600 mb-3 uppercase tracking-wide text-sm border-b pb-2">Daftar Penukaran Hadiah:</h4>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+            {prizes.map((prize) => (
+              <div class="flex flex-col items-center bg-yellow-50 p-2 rounded-lg border border-yellow-100">
+                <span class="font-black text-red-500 text-xl">{prize.kupon}</span>
+                <span class="text-xs text-gray-500 uppercase font-bold">Kupon</span>
+                <span class="font-bold text-gray-800 mt-1 text-center leading-tight">{prize.hadiah}</span>
+              </div>
+            ))}
+          </div>
+          <p class="text-xs text-center mt-4 text-gray-400 italic">*Syarat & ketentuan berlaku. Tukarkan kupon di toko.</p>
+        </div>
+      </div>
+    </section>
+
+    <main class="container mx-auto px-4 pb-24">
+      <h3 class="text-2xl font-bold mb-6 text-gray-800 text-center">
+        ✨ Promo Spesial Hari Ini ✨
+      </h3>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        {products.map((item) => (
+          <div 
+            onclick={`pesanProduk('${item.name}', '${item.price}')`}
+            class="cursor-pointer bg-white p-4 md:p-6 rounded-2xl shadow-md border border-gray-100 hover:shadow-2xl hover:border-blue-300 transition duration-300 flex flex-col relative overflow-hidden group h-full justify-between">
+            
+            {item.originalPrice && (
+              <div class="absolute top-0 right-0 bg-red-600 text-white text-[10px] md:text-xs font-bold px-3 py-1 rounded-bl-lg z-10 shadow-md">
+                HEMAT!
+              </div>
+            )}
+
+            {item.bonus && (
+              <div class="absolute top-0 left-0 bg-yellow-400 text-yellow-900 text-[10px] md:text-xs font-bold px-3 py-1 rounded-br-lg z-10 shadow-sm flex items-center gap-1">
+                🎟️ {item.bonus}
+              </div>
+            )}
+
+            <div class="w-full h-40 md:h-48 mb-4 bg-gray-50 rounded-xl overflow-hidden flex items-center justify-center">
+               <img src={item.img} alt={item.name} class="w-full h-full object-contain group-hover:scale-110 transition duration-500" />
+            </div>
+            
+            <div class="text-center">
+              <h4 class="font-bold text-gray-800 text-sm md:text-base leading-tight mb-2 min-h-[40px] flex items-center justify-center">{item.name}</h4>
+              
+              <div class="mb-4">
+                {item.originalPrice && (
+                  <p class="text-gray-400 text-xs md:text-sm line-through">{item.originalPrice}</p>
+                )}
+                <p class="text-blue-700 font-extrabold text-xl">{item.price}</p>
+              </div>
+            </div>
+
+            <button class="w-full bg-blue-600 text-white font-bold py-3 rounded-xl group-hover:bg-blue-700 active:scale-95 transition text-sm flex justify-center items-center gap-2 shadow-lg shadow-blue-200">
+              <span>Pesan Sekarang</span> 🛒
+            </button>
+          </div>
+        ))}
+      </div>
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 py-12 text-center text-sm mt-12">
+      <div class="container mx-auto px-4">
+        <h4 class="font-black text-white text-2xl mb-2">💧 {tokoName}</h4>
+        <p class="mb-6 max-w-md mx-auto">{alamat}</p>
+        
+        <div class="p-4 bg-slate-800 rounded-lg max-w-sm mx-auto mb-8 border border-slate-700">
+          <p class="text-slate-300 font-bold mb-2">Butuh Cepat? Hubungi Kami:</p>
+          <a href={`https://wa.me/${noWA}`} class="text-green-400 hover:text-green-300 font-bold text-lg flex justify-center items-center gap-2">
+            <span class="bg-green-500 text-slate-900 w-6 h-6 rounded-full flex items-center justify-center text-xs">📞</span> 
+            0858-8020-9240
+          </a>
+        </div>
+
+        <p class="text-xs text-gray-600">&copy; 2026 Fikri Water. Melayani Sepenuh Hati.</p>
+      </div>
+    </footer>
+
+    <script define:vars={{ noWA }}>
+      window.pesanProduk = function(productName, price) {
+        const text = `Halo Fikri Water, saya mau pesan via website:\n\n*${productName}*\nHarga Promo: ${price}\n\nMohon diantar ke alamat saya ya. (Sekalian minta kuponnya ya kak!)`;
+        window.open(`https://wa.me/${noWA}?text=${encodeURIComponent(text)}`, '_blank');
+      }
+    </script>
+  </body>
+</html>
