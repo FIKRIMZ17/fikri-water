@@ -10,14 +10,14 @@ const jamBuka = "07.00 - 17.00 WIB";
 
 // 3. DATA HADIAH KUPON
 const prizes = [
-  { kupon: 10, hadiah: "Gratis 1x Isi Ulang" },
-  { kupon: 40, hadiah: "Gelas Gagang Cantik 1/2 lusin" },
-  { kupon: 50, hadiah: "Minyak Goreng 1 Liter/ Gula Kemasan 1Kg" },
-  { kupon: 70, hadiah: "Payung 16 Jari / Pompa Elektrik " },
-  { kupon: 120, hadiah: "Langseng no.22 / Karpet Tebel 180cm" },
-  { kupon: 150, hadiah: "Kipas Angin Karakter / Rak Sepatu 5 Susun" },
-  { kupon: 600, hadiah: "Blender Miyako 3in1 / Miyako Rice Cooker 1.8L" },
-  { kupon: 800, hadiah: "Lemari TV / Kompor Rinnai 2 Tungku Stainless" },
+  { kupon: 10, hadiah: "Gratis 1x Isi Ulang", img: "/prizes/gratis-isi-ulang.png" },
+  { kupon: 40, hadiah: "Gelas Gagang Cantik 1/2 lusin", img: "/prizes/gelas-galon.png" },
+  { kupon: 50, hadiah: "Minyak Goreng 1 Liter/ Gula Kemasan 1Kg", img: "/prizes/minyak-goreng.png" },
+  { kupon: 70, hadiah: "Payung 16 Jari / Pompa Elektrik ", img: "/prizes/payung.png" },
+  { kupon: 120, hadiah: "Langseng no.22 / Karpet Tebel 180cm", img: "/prizes/kipas-angin.png" },
+  { kupon: 150, hadiah: "Kipas Angin Karakter / Rak Sepatu 5 Susun", img: "/prizes/termos.png" },
+  { kupon: 600, hadiah: "Blender Miyako 3in1 / Miyako Rice Cooker 1.8L", img: "/prizes/rice-cooker.png" },
+  { kupon: 800, hadiah: "Lemari TV / Kompor Rinnai 2 Tungku Stainless", img: "/prizes/lemari-tv.png" },
 ];
 
 // 4. DATA PRODUK
@@ -28,7 +28,7 @@ const products = [
     price: "Rp 5.000", 
     originalPrice: "Rp 6.000", 
     bonus: "+1 Kupon",
-    img: "/galon19liter.png" 
+    img: "/galon19liter.jpg" 
   },
   { 
     id: 2, 
@@ -36,21 +36,21 @@ const products = [
     price: "Rp 4.000", 
     originalPrice: "Rp 5.000", 
     bonus: "+1 Kupon",
-    img: "/galon15liter.png" 
+    img: "/galon15liter.jpg" 
   },
   { 
     id: 3, 
     name: "Aqua Galon Asli", 
-    price: "Rp 23.000", 
-    originalPrice:"Rp 24.000", 
+    price: "Rp 22.000", 
+    originalPrice:"Rp 23.000", 
     bonus: "+1 kupon",
     img: "/aqua19liter.jpg" 
   },
   { 
     id: 4, 
     name: "Le Minerale Galon Asli", 
-    price: "Rp 24.000", 
-    originalPrice: "Rp 25.000", 
+    price: "Rp 21.000", 
+    originalPrice: "Rp 22.000", 
     bonus: "+1 kupon",
     img: "/lemin15.jpg" 
   },
@@ -72,8 +72,8 @@ const products = [
   },
   { id: 7, 
     name: "Air Mineral Gelas", 
-    price: "Rp 20.000", 
-    originalPrice: "Rp 22.000", 
+    price: "Rp 18.000", 
+    originalPrice: "Rp 19.000", 
     bonus: null,
     img: "/gelas.png" 
   },
@@ -141,6 +141,15 @@ const products = [
           <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
             {prizes.map((prize) => (
               <div class="flex flex-col items-center bg-yellow-50 p-2 rounded-lg border border-yellow-100">
+                <img
+                  src={prize.img}
+                  alt={prize.hadiah}
+                  width="112"
+                  height="112"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-12 h-12 md:w-16 md:h-16 object-contain mb-1"
+                />
                 <span class="font-black text-red-500 text-xl">{prize.kupon}</span>
                 <span class="text-xs text-gray-500 uppercase font-bold">Kupon</span>
                 <span class="font-bold text-gray-800 mt-1 text-center leading-tight">{prize.hadiah}</span>
