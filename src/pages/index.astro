@@ -28,7 +28,7 @@ const products = [
     price: "Rp 5.000", 
     originalPrice: "Rp 6.000", 
     bonus: "+1 Kupon",
-    img: "/galon19liter.png" 
+    img: "/galon19liter.jpg" 
   },
   { 
     id: 2, 
@@ -36,7 +36,7 @@ const products = [
     price: "Rp 4.000", 
     originalPrice: "Rp 5.000", 
     bonus: "+1 Kupon",
-    img: "/galon15liter.png" 
+    img: "/galon15liter.jpg" 
   },
   { 
     id: 3, 
@@ -44,7 +44,7 @@ const products = [
     price: "Rp 22.000", 
     originalPrice:"Rp 23.000", 
     bonus: "+1 kupon",
-    img: "aqua19liter.jpg" 
+    img: "/aqua19liter.jpg" 
   },
   { 
     id: 4, 
@@ -52,7 +52,7 @@ const products = [
     price: "Rp 21.000", 
     originalPrice: "Rp 22.000", 
     bonus: "+1 kupon",
-    img: "lemin15.jpg" 
+    img: "/lemin15.jpg" 
   },
   { 
     id: 5, 
@@ -60,7 +60,7 @@ const products = [
     price: "Rp 23.000", 
     originalPrice: "Rp 25.000", 
     bonus: null,
-    img: "gaselpiji3kg.jpg" 
+    img: "/gaselpiji3kg.jpg" 
   },
   { 
     id: 6, 
@@ -68,14 +68,14 @@ const products = [
     price: "Rp 1.500", 
     originalPrice: "Rp 2.000", 
     bonus: null,
-    img: "esbatu.jpg" 
+    img: "/esbatu.jpg" 
   },
   { id: 7, 
     name: "Air Mineral Gelas", 
     price: "Rp 18.000", 
     originalPrice: "Rp 19.000", 
     bonus: null,
-    img: "gelas.png" 
+    img: "/gelas.png" 
   },
 ];
 ---
@@ -83,7 +83,10 @@ const products = [
 <html lang="id">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+    <meta name="description" content={`${tokoName} - Depot isi ulang air & gas terpercaya. ${alamat}. Buka setiap hari ${jamBuka}. Pesan langsung via WhatsApp!`} />
+    <meta name="theme-color" content="#1d4ed8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{tokoName} - Buka Setiap Hari!</title>
   </head>
   <body class="bg-slate-50 font-sans text-slate-800">
@@ -173,7 +176,15 @@ const products = [
             )}
 
             <div class="w-full h-40 md:h-48 mb-4 bg-gray-50 rounded-xl overflow-hidden flex items-center justify-center">
-               <img src={item.img} alt={item.name} class="w-full h-full object-contain group-hover:scale-110 transition duration-500" />
+               <img
+                 src={item.img}
+                 alt={item.name}
+                 width="640"
+                 height="640"
+                 loading={item.id <= 2 ? "eager" : "lazy"}
+                 decoding="async"
+                 class="w-full h-full object-contain group-hover:scale-110 transition duration-500"
+               />
             </div>
             
             <div class="text-center">
@@ -214,8 +225,22 @@ const products = [
     </footer>
 
     <script define:vars={{ noWA }}>
+      // Generate kode unik untuk setiap pesanan (format: FW-YYMMDD-HHMM-XXXX)
+      function generateOrderCode() {
+        const now = new Date();
+        const pad = (n) => String(n).padStart(2, '0');
+        const yy = String(now.getFullYear()).slice(-2);
+        const mm = pad(now.getMonth() + 1);
+        const dd = pad(now.getDate());
+        const hh = pad(now.getHours());
+        const mi = pad(now.getMinutes());
+        const rand = Math.random().toString(36).slice(2, 6).toUpperCase();
+        return `FW-${yy}${mm}${dd}-${hh}${mi}-${rand}`;
+      }
+
       window.pesanProduk = function(productName, price) {
-        const text = `Halo Fikri Water, saya mau pesan via website:\n\n*${productName}*\nHarga Promo: ${price}\n\nMohon diantar ke alamat saya ya. (Sekalian minta kuponnya ya kak!)`;
+        const orderCode = generateOrderCode();
+        const text = `Halo Fikri Water, saya mau pesan via website:\n\n*Kode Pesanan: ${orderCode}*\n*${productName}*\nHarga Promo: ${price}\n\nMohon diantar ke alamat saya ya. (Sekalian minta kuponnya ya kak!)`;
         window.open(`https://wa.me/${noWA}?text=${encodeURIComponent(text)}`, '_blank');
       }
     </script>
